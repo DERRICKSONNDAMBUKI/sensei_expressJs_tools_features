@@ -31,6 +31,21 @@ app.use((req, res, next) => {
   next();
 });
 
+// dummy database
+const users = {
+  admin: { name: "admin" },
+};
+
+// when you craete a user, generate a salt
+// and hash the password ('pass' is the password here)
+hash({ password: "pass" }, (err, pass, salt, hash) => {
+  if (err) throw err;
+  // store the salt & hash in the "db"
+  users.admin.salt = salt;
+  users.admin.hash = hash;
+});
+
+
 const auth = (req, res) => {
   res.send("This is Auth!");
 };
