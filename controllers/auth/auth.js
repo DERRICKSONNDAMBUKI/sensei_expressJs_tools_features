@@ -110,6 +110,12 @@ const loginFunction = (req, res, next) => {
           ' You may now access <a href="/restricted">/restricted</a>.';
         res.redirect("back");
       });
+    } else {
+      req.session.error =
+        "Authentication failed, please check your " +
+        " username and password." +
+        ' (use "admin" and "pass"';
+      res.redirect("/login");
     }
   });
 };
