@@ -1,10 +1,12 @@
 {
   "name": "express",
+  "author": "derricksonndambuki",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
   },
+  "repository": "git@github.com:DERRICKSONNDAMBUKI/sensei_expressJs_tools_features.git",
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
