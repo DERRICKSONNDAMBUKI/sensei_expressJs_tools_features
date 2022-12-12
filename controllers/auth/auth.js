@@ -66,14 +66,14 @@ const restrict = (res, next) => {
     next();
   } else {
     req.session.error = "Access denied!";
-    res.redirect("/login");
+    res.redirect("/auth/login");
   }
 };
 
 // route functions
 const auth = (req, res) => {
   // res.send("This is Auth!");
-  res.redirect("/login");
+  res.redirect("/auth/login");
 };
 
 const restricted = (req, res) => {
@@ -90,7 +90,7 @@ const logout = (req, res) => {
   // destroy the user's session to log them out
   // will be re-created next on request
   req.session.destroy(() => {
-    res.redirect("/");
+    res.redirect("/auth");
   });
 };
 
@@ -115,9 +115,9 @@ const loginFunction = (req, res, next) => {
         "Authentication failed, please check your " +
         " username and password." +
         ' (use "admin" and "pass"';
-      res.redirect("/login");
+      res.redirect("/auth/login");
     }
   });
 };
 
-(module.exports = auth), restrict;
+module.exports = {auth, restrict,restricted,login,logout,loginFunction}
