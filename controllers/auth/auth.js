@@ -1,13 +1,16 @@
 const hash = require("pbkdf2-password")();
-const path = require("path");
 const express = require("express");
 const session = require("express-session");
+const path = require("path");
 
 const app = express();
 
 // config
+const viewpath = path.join(__dirname,"views")
+console.log('path',viewpath);
+
+app.set("views", viewpath);
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
 
 // middleware
 app.use(express.urlencoded({ extended: false }));
@@ -61,7 +64,7 @@ const authenticate = (name, pass, fn) => {
   });
 };
 
-const restrict = (res, next) => {
+const restrict = (req, res, next) => {
   if (req.session.user) {
     next();
   } else {
@@ -78,7 +81,7 @@ const auth = (req, res) => {
 
 const restricted = (req, res) => {
   res.send(
-    'Wooha! suucessfull accessed restricted area, click to <a href="/logout">Logout</a>'
+    'Wooha! sucessfull accessed restricted area, click to <a href="/logout">Logout</a>'
   );
 };
 
@@ -120,4 +123,4 @@ const loginFunction = (req, res, next) => {
   });
 };
 
-module.exports = {auth, restrict,restricted,login,logout,loginFunction}
+module.exports = { auth, restrict, restricted, login, logout, loginFunction };
