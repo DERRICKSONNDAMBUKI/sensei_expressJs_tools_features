@@ -29,6 +29,7 @@ app.use("/auth", authRouter); // ricky has bugs
 // HTTP content negotiator
 app.use("/contentnegotiation", contentNegotiationRouter);
 
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
