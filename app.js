@@ -9,6 +9,7 @@ const indexRouter = require("./routes/home/index");
 const usersRouter = require("./routes/users/users");
 const authRouter = require("./routes/auth/auth");
 const contentNegotiationRouter = require("./routes/content-negotiation/cn_route");
+const downloadsRouter = require("./routes/downloads/downloads");
 
 var app = express();
 
@@ -28,7 +29,8 @@ app.use("/users", usersRouter);
 app.use("/auth", authRouter); // ricky has bugs
 // HTTP content negotiator
 app.use("/contentnegotiation", contentNegotiationRouter);
-
+// transferring files to client
+app.use("/downloads", downloadsRouter); // ricky has bugs
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
