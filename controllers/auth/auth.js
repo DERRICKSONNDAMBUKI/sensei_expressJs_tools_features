@@ -1,3 +1,5 @@
+'use strict'
+
 const hash = require("pbkdf2-password")();
 const express = require("express");
 const session = require("express-session");
