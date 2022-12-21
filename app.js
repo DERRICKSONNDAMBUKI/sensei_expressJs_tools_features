@@ -1,13 +1,14 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
 // route paths
-var indexRouter = require("./routes/home/index");
-var usersRouter = require("./routes/users/users");
-var authRouter = require("./routes/auth/auth");
+const indexRouter = require("./routes/home/index");
+const usersRouter = require("./routes/users/users");
+const authRouter = require("./routes/auth/auth");
+const contentNegotiationRouter = require("./routes/content-negotiation/cn_route");
 
 var app = express();
 
@@ -25,6 +26,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter); // ricky has bugs
+// HTTP content negotiator
+app.use("/contentnegotiation", contentNegotiationRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -31,3 +31,15 @@ const content_negotiation = (req, res) => {
     },
   });
 };
+
+// or you could write a tiny middleware like
+// this to add a layer of abstraction
+// and make things a bit more declarative:
+const format = (path) => {
+  const obj = require(path);
+  return (req, res) => {
+    res.format(obj);
+  };
+};
+
+module.exports = { content_negotiation, format };
